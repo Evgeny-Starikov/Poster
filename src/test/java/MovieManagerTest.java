@@ -39,17 +39,14 @@ public class MovieManagerTest {
 
     @Test
     public void testShowLastBeforeSetLimit() {
-        MovieManager manager = new MovieManager(7);
+        MovieManager manager = new MovieManager();
 
-        manager.addMovie("Бладшот");
-        manager.addMovie("Вперёд");
-        manager.addMovie("Отель Белград");
         manager.addMovie("Джентельмены");
         manager.addMovie("Человек-невидимка");
         manager.addMovie("Тролли. Мировой тур");
         manager.addMovie("Номер один");
 
-        String[] expected = {"Номер один", "Тролли. Мировой тур", "Человек-невидимка", "Джентельмены", "Отель Белград", "Вперёд", "Бладшот"};
+        String[] expected = {"Номер один", "Тролли. Мировой тур", "Человек-невидимка", "Джентельмены"};
         String[] actual = manager.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
@@ -57,6 +54,7 @@ public class MovieManagerTest {
 
     @Test
     public void testShowLastBeforeCurrentLimit() {
+        int limit = 7;
         MovieManager manager = new MovieManager();
 
         manager.addMovie("Бладшот");

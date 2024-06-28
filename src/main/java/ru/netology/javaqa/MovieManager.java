@@ -9,9 +9,9 @@ public class MovieManager {
         this.limit = 5;
     }
 
-    public MovieManager(int limit) {
-        this.limit = limit;
-    }
+//    public MovieManager(int limit) {
+//        this.limit = limit;
+//    }
 
     public void addMovie(String movie) {
         String[] tmp = new String[movies.length + 1];
@@ -37,8 +37,6 @@ public class MovieManager {
         for (int i = 0; i < tmp.length; i++) {
             tmp[i] = movies[movies.length - 1 - i];
         }
-
         return tmp;
-
     }
 }

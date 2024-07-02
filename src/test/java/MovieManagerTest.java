@@ -53,8 +53,47 @@ public class MovieManagerTest {
     }
 
     @Test
-    public void testShowLastBeforeCurrentLimit() {
-        int limit = 7;
+    public void shouldShowLastBeforeManuallySetLimit() {
+        MovieManager manager = new MovieManager(7);
+
+        manager.addMovie("Бладшот");
+        manager.addMovie("Вперёд");
+        manager.addMovie("Отель Белград");
+        manager.addMovie("Джентельмены");
+        manager.addMovie("Человек-невидимка");
+        manager.addMovie("Тролли. Мировой тур");
+        manager.addMovie("Номер один");
+
+        String[] expected = {"Номер один", "Тролли. Мировой тур", "Человек-невидимка", "Джентельмены", "Отель Белград", "Вперёд", "Бладшот"};
+        String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+
+
+    @Test
+    public void testShowLastExceedingLimit() {
+
+        MovieManager manager = new MovieManager(8);
+
+        manager.addMovie("Бладшот");
+        manager.addMovie("Вперёд");
+        manager.addMovie("Отель Белград");
+        manager.addMovie("Джентельмены");
+        manager.addMovie("Человек-невидимка");
+        manager.addMovie("Тролли. Мировой тур");
+        manager.addMovie("Номер один");
+        manager.addMovie("Восьмой фильм");
+
+        String[] expected = {"Восьмой фильм", "Номер один", "Тролли. Мировой тур", "Человек-невидимка", "Джентельмены", "Отель Белград", "Вперёд", "Бладшот"};
+        String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldShowAll() {
         MovieManager manager = new MovieManager();
 
         manager.addMovie("Бладшот");
@@ -65,8 +104,9 @@ public class MovieManagerTest {
         manager.addMovie("Тролли. Мировой тур");
         manager.addMovie("Номер один");
 
-        String[] expected = {"Номер один", "Тролли. Мировой тур", "Человек-невидимка", "Джентельмены", "Отель Белград"};
-        String[] actual = manager.findLast();
+
+        String[] expected = {"Бладшот", "Вперёд", "Отель Белград", "Джентельмены", "Человек-невидимка", "Тролли. Мировой тур", "Номер один"};
+        String[] actual = manager.findAll();
 
         Assertions.assertArrayEquals(expected, actual);
     }

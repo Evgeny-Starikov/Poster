@@ -163,5 +163,22 @@ public class MovieManagerTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    @Test
+    public void shouldShowOnlyLastMoviesWithinLimit() {
+        MovieManager manager = new MovieManager(5);
+
+        manager.addMovie("Бладшот");
+        manager.addMovie("Вперёд");
+        manager.addMovie("Отель Белград");
+        manager.addMovie("Джентельмены");
+        manager.addMovie("Человек-невидимка");
+        manager.addMovie("Тролли. Мировой тур");
+        manager.addMovie("Номер один");
+
+        String[] expected = {"Номер один", "Тролли. Мировой тур", "Человек-невидимка", "Джентельмены", "Отель Белград"};
+        String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
 
 }
